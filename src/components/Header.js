@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 
 
 export class Header extends Component {
-	constructor () {
-		super();
+	constructor (props) {
+		super(props);
 
+	}
+	handleClick = (e) => {
+		this.props.changeCategory(e.target.className)
 	}
 	render () {
 		return (
 			<div>
-
+				<button className='people' onClick={this.handleClick}>PEOPLE</button>
+				<button className='planets' onClick={this.handleClick}>PLANET</button>
+				<button className='vehicles' onClick={this.handleClick}>VEHICLES</button>
 			</div>
 		)
 	}

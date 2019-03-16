@@ -8,7 +8,8 @@ export default class App extends Component {
     super();
     this.state = {
       randomMovie: {},
-      error: ''
+      error: '',
+      category: ''
     }
   }
   componentDidMount () {
@@ -23,11 +24,16 @@ export default class App extends Component {
       .then(randomMovie => this.setState({ randomMovie }))
       .catch(error => this.setState({ error: error.message}))
   }
+  
+  changeCategory = (category) => {
+    this.setState({ category: category })
+  }
   render() {
+    const { randomMovie, category } = this.state
     return (
       <div>
-        <Header />
-        <Container movie={this.state.randomMovie}/>
+        <Header changeCategory={this.changeCategory}/>
+        <Container movie={randomMovie} category={category}/>
       </div>
     );
   }
