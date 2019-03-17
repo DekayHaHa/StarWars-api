@@ -7,7 +7,7 @@ const fetchByKey = (key) => {
 const peoplePull = (values) => {
 	const cleanedPeeps = values.map(elem => { 
 		const { name, homeworld, species } = elem
-		let peep = { name, favorite: false}
+		const peep = { name, favorite: false}
 		return fetch(homeworld)
 			.then(response => response.json())
 			.then(data => ({ ...peep, 
@@ -16,16 +16,14 @@ const peoplePull = (values) => {
 			.then(dataTwo => {
 				return fetchValues(species)
 					.then(val => {
-						const species = val.join('')
-						return {...dataTwo, species}})
+					const species = val.join('')
+					return {...dataTwo, species}})
+
 			})
+
 	})
 	return Promise.all(cleanedPeeps)
 }
-
-// const fetchSpecies = () => {
-
-// }
 
 const planetsPull = (values) => {
 	const cleanedPlanets = values.map(elem => {
@@ -54,12 +52,5 @@ const vehiclesPull = (values) => {
 	})
 	return Promise.all(cleanedVehicles)
 }
-
-// const fetchSingle = (url, key, data) => {
-// 	return fetch(url)
-// 		.then(response => response.json())
-// 		.then(data => data[key])
-// 		.then(result => ({ ...data, extra: result }))
-// }
 
 export { fetchByKey, peoplePull, planetsPull, vehiclesPull }

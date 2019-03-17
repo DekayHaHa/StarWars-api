@@ -6,6 +6,7 @@ describe('Api', () => {
 	let mockData;
 	let mockValues;
 	let mockFetchValues;
+	let mockValuesFinal;
 	describe('fetchByKey', () => {
 		beforeEach(() => {
 			mockData = {
@@ -76,6 +77,27 @@ describe('Api', () => {
 					forceMaster: false
 				}
 			]
+
+			mockValuesFinal = [
+				{
+					name: "David",
+					homeworld: 'https://swapi.co/api/planet0',
+					species: 'https://swapi.co/api/species0',
+					favorite: false
+				},
+				{
+					name: "Devin",
+					homeworld: 'https://swapi.co/api/planet1',
+					species: 'https://swapi.co/api/species1',
+					favorite: false
+				},
+				{
+					name: "Christie",
+					homeworld: 'https://swapi.co/api/planet2',
+					species: 'https://swapi.co/api/species2',
+					favorite: true
+				}
+			]
 			// mockPerson = {
 			// 	name: "David",
 			// 	homeworld: 'https://swapi.co/api/planet0',
@@ -102,10 +124,15 @@ describe('Api', () => {
 			// setup
 			// execution
 			peoplePull(mockValues)
-			// expectation
-			mockValues.forEach((val, i) => {
-				expect(mockFetchValues).toHaveBeenCalledWith(`https://swapi.co/api/species${i}`)
-			})
+				.then(dataOne => console.log('HEY'))
+				
+				// expectation
+				// mockValues.forEach((val, i) => {
+				// 	console.log('hey')
+				// 		expect(mockFetchValues).toHaveBeenCalledWith(`https://swapi.co/api/species${1}`)
+				// 	})
+				// })
+
 			
 		})
 	})
