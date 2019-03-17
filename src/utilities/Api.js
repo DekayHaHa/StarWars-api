@@ -18,7 +18,6 @@ const peoplePull = (values) => {
 					.then(val => {
 					const species = val.join('')
 					return {...dataTwo, species}})
-
 			})
 
 	})
@@ -53,4 +52,4 @@ const vehiclesPull = (values) => {
 	return Promise.all(cleanedVehicles)
 }
 
-export { fetchByKey, peoplePull, planetsPull, vehiclesPull }
+export { fetchByKey, peoplePull, planetsPull, vehiclesPull, fetchValues }

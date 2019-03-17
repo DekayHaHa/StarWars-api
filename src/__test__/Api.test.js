@@ -1,12 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Api, { fetchByKey, peoplePull, planetsPull, vehiclesPull } from '../utilities/Api';
+import Api, { fetchByKey, peoplePull, planetsPull, vehiclesPull, fetchValues } from '../utilities/Api';
+import testUtililty, { mockPeopleValues, mockPeopleFinal, mockPlanetValues, mockVehicleValues, mockVehicleFinal, mockFinalPlanets } from './testUtililty'
 
 describe('Api', () => {
 	let mockData;
-	let mockValues;
-	let mockFetchValues;
-	let mockValuesFinal;
 	describe('fetchByKey', () => {
 		beforeEach(() => {
 			mockData = {
@@ -32,108 +30,171 @@ describe('Api', () => {
 			// setup
 			const key = 'dinosuars'
 			// execution
-			fetchByKey(key)
-				.then(data => {
-					// expectation
-					expect(data).toEqual(mockData);
-				})
+			fetchByKey(key).then(data => {
+				// expectation
+				expect(data).toEqual(mockData);
+			})
+
 		});
-		// it("if response not ok show error", () => {
-		// 	// setup
-		// 	const key = 'dinosuars';
+		it("if response not ok show error", () => {
+			// setup
+			const key = 'dinosuars';
 	
-		// 	fetch = jest.fn().mockImplementationOnce(() => Promise.resolve({
-		// 		ok: false
-		// 	}));
-		// 	// execution
-		// 	fetchByKey(key)
-		// 		.catch(error => {
-		// 			// expectation
-		// 			// console.log(error.message)
-		// 			expect(error.message).toBe('Response not ok');
-		// 		})
+			fetch = jest.fn().mockImplementationOnce(() => Promise.reject({
+				ok: false,
+				message: 'Response not ok'
+			}));
+			// execution
+			fetchByKey(key)
+				.catch(error => {
+					// expectation
+					expect(error.message).toBe('Response not ok');
+				})
 	
-		// });
+		});
 	})
 	describe('peoplePull', () => {
 		beforeEach(() => {
-			mockValues = [
-				{
-					name: "David",
-					homeworld: 'https://swapi.co/api/planet0',
-					species: 'https://swapi.co/api/species0',
-					forceMaster: true
-				},
-				{
-					name: "Devin",
-					homeworld: 'https://swapi.co/api/planet1',
-					species: 'https://swapi.co/api/species1',
-					forceMaster: true
-				},
-				{
-					name: "Christie",
-					homeworld: 'https://swapi.co/api/planet2',
-					species: 'https://swapi.co/api/species2',
-					forceMaster: false
-				}
-			]
-
-			mockValuesFinal = [
-				{
-					name: "David",
-					homeworld: 'https://swapi.co/api/planet0',
-					species: 'https://swapi.co/api/species0',
-					favorite: false
-				},
-				{
-					name: "Devin",
-					homeworld: 'https://swapi.co/api/planet1',
-					species: 'https://swapi.co/api/species1',
-					favorite: false
-				},
-				{
-					name: "Christie",
-					homeworld: 'https://swapi.co/api/planet2',
-					species: 'https://swapi.co/api/species2',
-					favorite: true
-				}
-			]
-			// mockPerson = {
-			// 	name: "David",
-			// 	homeworld: 'https://swapi.co/api/planet0',
-			// 	species: 'https://swapi.co/api/species0'
-			// }
 			fetch = jest.fn().mockImplementation(() => Promise.resolve({
 				ok: true,
-				status: 200
+				status: 200,
+				json: () => Promise.resolve({name: 'Joe', population: 1})
 			}));
-			mockFetchValues = jest.fn()
 		});
 		it('should fetch by specific key for each value', () => {
 			// setup
 			// execution
-			peoplePull(mockValues)
-			// expectation
-			mockValues.forEach((val, i) => {
+			peoplePull(mockPeopleValues)
+			mockPeopleValues.forEach((val, i) => {
+				// expectation
 				expect(fetch).toHaveBeenCalledWith(`https://swapi.co/api/planet${i}`)
 			})
-			// expect(fetch).toHaveBeenCalledWith('https://swapi.co/api/planet1')
-			// expect(fetch).toHaveBeenCalledWith('https://swapi.co/api/planet2')
 		})
-		it('should call fetchValues with species', () => {
+		it.skip('Should call fetchValues with correct URL', () => {
 			// setup
 			// execution
-			peoplePull(mockValues)
-				.then(dataOne => console.log('HEY'))
-				
-				// expectation
-				// mockValues.forEach((val, i) => {
-				// 	console.log('hey')
-				// 		expect(mockFetchValues).toHaveBeenCalledWith(`https://swapi.co/api/species${1}`)
-				// 	})
-				// })
-
-			
+			// expectation
+			expect(1).toEqual(2)
 		})
+		it.skip('should return expected data', () => {
+			// setup
+			// fetchValues.mockImplementationOnce(() => Promise.resolve({name: 'Mark'}))
+			// execution
+			peoplePull(mockPeopleValues).then(data => {
+				expect(data).toEqual(mockPeopleFinal)
+			})
+			// expectation
+		})
+		it("if response not ok show error", () => {
+			// setup
+			fetch = jest.fn().mockImplementation(() => Promise.reject({
+				ok: true,
+				status: 200,
+				message: 'Response not ok',
+				json: () => 12
+			}));
+			// execution
+			peoplePull(mockPeopleValues).catch(error => {
+				// expectation
+				expect(error.message).toBe('Response not ok');
+			})
+		});
+	})
+	describe('planetsPull', () => {
+		beforeEach(() => {
+			fetch = jest.fn().mockImplementation(() => Promise.resolve({
+				ok: true,
+				status: 200,
+				json: () => Promise.resolve({name: 'PEOPLES'})
+			}));
+		});
+		it.skip('should call fetchValues with correct URL', () => {
+			// setup
+			// execution
+			// expectation
+			expect(1).toEqual(2)
+		})
+		it('should return expected data', () => {
+			// setup
+			// execution
+			planetsPull(mockPlanetValues).then(data => {
+				// expectation
+				expect(data).toEqual(mockFinalPlanets)
+			})
+			// expect(fecthVaules).toHaveBeenCalledWith('https://swapi.co/api/planet12')
+		})
+		it("if response not ok show error", () => {
+			// setup
+			fetch = jest.fn().mockImplementation(() => Promise.reject({
+				ok: true,
+				status: 200,
+				message: 'Response not ok',
+				json: () => 12
+			}));
+			// execution
+			planetsPull(mockPlanetValues).catch(error => {
+				// expectation
+				expect(error.message).toBe('Response not ok');
+			})
+		});
+	})
+	describe('vehiclesPull', () => {
+		it('should return expected data', () => {
+			// setup
+			// execution
+			vehiclesPull(mockVehicleValues).then((data) => {
+				// expectation
+				expect(data).toEqual(mockVehicleFinal)
+			})
+		})
+	})
+	describe('fetchValues', () => {
+		let mockFetchValues;
+		let mockValuesFinal;
+		beforeEach(() => {
+			mockFetchValues = [
+				0, 1, 2
+			]
+			mockValuesFinal = [
+				'final', 'final', 'final'
+			]
+			fetch = jest.fn().mockImplementation(() => Promise.resolve({
+				ok: true,
+				status: 200,
+				json: () => Promise.resolve({name: 'final'})
+			}));
+		});
+		it('should call fetch with correct URL', () => {
+			// setup
+			// execution
+			fetchValues(mockFetchValues).then(() => {
+				mockFetchValues.forEach(val => {
+					// expectation
+					expect(fetch).toHaveBeenCalledWith(val)
+				})
+			})
+		})
+		it('should return expected data', () => {
+			// setup
+			// execution
+			fetchValues(mockFetchValues).then(data => {
+					// expectation
+				expect(data).toEqual(mockValuesFinal)
+			})
+		})
+		it("if response not ok show error", () => {
+			// setup
+			fetch = jest.fn().mockImplementation(() => Promise.reject({
+				ok: true,
+				status: 200,
+				message: 'Response not ok',
+				json: () => 12
+			}));
+			// execution
+			fetchValues(mockFetchValues).catch(error => {
+					// expectation
+					expect(error.message).toBe('Response not ok');
+			})
+		});
 	})
 })
