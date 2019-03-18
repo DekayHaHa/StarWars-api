@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import {CardInfo} from './CardInfo'
 
 export class Card extends Component {
-	constructor (props) {
-		super(props);
-	}
 	displayInfo = (card) => {
 				return Object.keys(card).map((elem, i)=>
 					<CardInfo key={i}  title={elem} info={card[elem]}/>

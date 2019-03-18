@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 
 export class Header extends Component {
-	constructor (props) {
-		super(props);
-
-	}
 	handleClick = (e) => {
 		this.props.changeCategory(e.target.className)
 	}
