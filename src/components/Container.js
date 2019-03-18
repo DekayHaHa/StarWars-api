@@ -38,12 +38,12 @@ export class Container extends Component {
 	}
 	render () {
 		const { movie, category } = this.props
-		if (category) {``
+		if (category) {
 			this.setData(category)
 		}
 		const display = this.state[category] ? this.sendDownCards(this.state[category]): <MovieScroll {...movie} />
 		return (
-			<div>
+			<div className='container'>
 				{display}
 			</div>
 		)

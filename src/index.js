@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles/index.css';
+import './styles/Header.css';
+import './styles/MovieScroll.css';
+import './styles/Container.css';
+import './styles/Card.css';
+
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 

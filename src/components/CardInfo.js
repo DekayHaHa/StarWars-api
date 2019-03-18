@@ -5,7 +5,7 @@ export const CardInfo = ({title, info}) => {
 	if (title === 'favorite') {
 		display = <button className={`favorite-${info}`}>FAVORITE</button>
 	} else {
-		display = <p>{`${title}: ${info}`}</p>
+		display = <p>{`${title}: ${info || 'N/A'}`}</p>
 	}
 	return (
 		display

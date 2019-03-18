@@ -13,9 +13,8 @@ export class Card extends Component {
 	render () {
 		const info = this.displayCards(this.props.card)
 	return (
-		<div>
+		<div className='card'>
 			{info}
-			</div>
-
+		</div>
 	)}
 }

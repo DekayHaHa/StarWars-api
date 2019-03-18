@@ -1,0 +1,15 @@
+.header {
+	text-align: center;
+}
+
+h1 {
+	margin: 10px;
+}
+
+button {
+	border: 2px lightgray solid;
+	width: 25%;
+	height: 40px;
+	color: white;
+	background-color: grey;
+}

@@ -11,8 +11,8 @@ export class Header extends Component {
 	}
 	render () {
 		return (
-			<div>
-				<button className='movie'>MOVIE</button>
+			<div className='header'>
+				<h1>STARWARS API</h1>
 				<button className='people' onClick={this.handleClick}>PEOPLE</button>
 				<button className='planets' onClick={this.handleClick}>PLANET</button>
 				<button className='vehicles' onClick={this.handleClick}>VEHICLES</button>
