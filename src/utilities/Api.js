@@ -16,7 +16,7 @@ const peoplePull = (values) => {
 				return fetchValues(species)
 					.then(val => {
 					const species = val.join('')
-						return { ...dataTwo, species, favorite: false}})
+						return { ...dataTwo, species, favorite: false, type: 'people'}})
 			})
 
 	})
@@ -29,7 +29,7 @@ const planetsPull = (values) => {
 		return fetchValues(residents)
 			.then(data => {
 				let residents = data.join(', ')
-				return { name, terrain, population, climate, residents, favorite: false }})
+				return { name, terrain, population, climate, residents, favorite: false, type: 'planets' }})
 	})
 	return Promise.all(cleanedPlanets)
 }
@@ -46,7 +46,7 @@ const fetchValues = (values) => {
 const vehiclesPull = (values) => {
 	const cleanedVehicles = values.map(elem => {
 		const { name, model, vehicle_class, passengers } = elem
-		return { name, model, class: vehicle_class, passengers, favorite: false }
+		return { name, model, class: vehicle_class, passengers, favorite: false, type: 'vehicles'}
 	})
 	return Promise.all(cleanedVehicles)
 }
