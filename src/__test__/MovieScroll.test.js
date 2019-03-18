@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { shallow, mount } from 'enzyme';
-import Header from '../components/Header'
+import MovieScroll from '../components/MovieScroll'
 
 
 describe('App', () => {

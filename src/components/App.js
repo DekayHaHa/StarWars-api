@@ -6,7 +6,7 @@ export default class App extends Component {
   constructor () {
     super();
     this.state = {
-      randomMovie: {},
+      randomMovie: 0,
       favorite: false,
       favoriteCount: 0,
       error: '',
@@ -15,6 +15,10 @@ export default class App extends Component {
   }
   componentDidMount () {
     const randomMovie = Math.floor(Math.random() * (7 - 1 + 1) + 1);
+    this.setState({ randomMovie })
+  }
+  getMovie = () => {
+    const {randomMovie} = this.state
     const url = `https://swapi.co/api/films/${randomMovie}`
     fetch(url)
       .then(response => response.json())
@@ -23,7 +27,7 @@ export default class App extends Component {
         return { crawl: opening_crawl, title, date: release_date }
       })
       .then(randomMovie => this.setState({ randomMovie }))
-      .catch(error => this.setState({ error: error.message}))
+      .catch(error => this.setState({ error: error.message }))
   }
   favoriteCount = (val) => {
     this.setState({ favoriteCount: val.length})
@@ -36,6 +40,9 @@ export default class App extends Component {
   }
   render() {
     const { randomMovie, category, favorite, favoriteCount } = this.state
+    if (randomMovie < 8) {
+      this.getMovie()
+    }
     return (
       <div>
         <Header changeCategory={this.changeCategory} favoriteHandle={this.favoriteHandle} favoriteCount={favoriteCount}/>

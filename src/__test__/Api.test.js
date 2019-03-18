@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import Api, { fetchByKey, peoplePull, planetsPull, vehiclesPull, fetchValues } from '../utilities/Api';
 import testUtililty, { mockPeopleValues, mockPeopleFinal, mockPlanetValues, mockVehicleValues, mockVehicleFinal, mockFinalPlanets } from './testUtililty'
 

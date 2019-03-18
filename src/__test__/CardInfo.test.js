@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Header from '../components/Header'
+import CardInfo from '../components/CardInfo'
 
 
 describe('App', () => {

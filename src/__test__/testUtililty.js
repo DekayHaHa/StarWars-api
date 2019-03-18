@@ -24,21 +24,24 @@ const mockPeopleFinal = [
 		homeworld: 'Mars',
 		population: 'David',
 		species: 'Alien',
-		favorite: false
+		favorite: false,
+		type: 'people'
 	},
 	{
 		name: "Devin",
 		homeworld: 'Earth',
 		population: '7.5B',
 		species: 'Human',
-		favorite: false
+		favorite: false,
+		type: 'people'
 	},
 	{
 		name: "Christie",
 		homeworld: 'The Moon',
 		population: 4,
 		species: 'Earthling',
-		favorite: false
+		favorite: false,
+		type: 'people'
 	}
 ]
 const mockPlanetValues = [
@@ -94,21 +97,24 @@ const mockVehicleFinal = [
 		model: 'Speedster',
 		class: 'Racer',
 		passengers: 1,
-		favorite: false
+		favorite: false,
+		type: 'vehicles'
 	},
 	{
 		name: "Millienum",
 		model: 'Falcon',
 		class: 'Frieghter',
 		passengers: 10,
-		favorite: false
+		favorite: false,
+		type: 'vehicles'
 	},
 	{
 		name: "Death Star",
 		model: 'Empire',
 		class: 'Planet Class',
 		passengers: 100000,
-		favorite: false
+		favorite: false,
+		type: 'vehicles'
 	}
 ]
 const mockFinalPlanets = [{
@@ -117,7 +123,8 @@ const mockFinalPlanets = [{
 	population: 1000,
 	climate: 'Dry',
 	favorite: false,
-	residents: 'PEOPLES'
+	residents: 'PEOPLES',
+	type: 'planets'
 },
 {
 	name: 'Mars',
@@ -125,7 +132,8 @@ const mockFinalPlanets = [{
 	population: 100,
 	climate: 'Dry',
 	favorite: false,
-	residents: 'PEOPLES'
+	residents: 'PEOPLES',
+	type: 'planets'
 },
 {
 	name: 'Venus',
@@ -133,8 +141,45 @@ const mockFinalPlanets = [{
 	population: 10,
 	climate: 'Acid Rain',
 	favorite: false,
-	residents: 'PEOPLES'
+	residents: 'PEOPLES',
+	type: 'planets'
+}]
+const mockFavorites = [{
+	name: 'Moon',
+	terrain: 'Barren',
+	population: 1000,
+	climate: 'Dry',
+	favorite: true,
+	residents: 'PEOPLES',
+	type: 'planets'
+},
+{
+	name: 'Mars',
+	terrain: 'Red',
+	population: 100,
+	climate: 'Dry',
+	favorite: false,
+	residents: 'PEOPLES',
+	type: 'planets'
+},
+{
+	name: 'Venus',
+	terrain: 'Mountain',
+	population: 10,
+	climate: 'Acid Rain',
+	favorite: false,
+	residents: 'PEOPLES',
+	type: 'planets'
+}]
+const mockFavoritesFinal = [{
+	name: 'Moon',
+	terrain: 'Barren',
+	population: 1000,
+	climate: 'Dry',
+	favorite: true,
+	residents: 'PEOPLES',
+	type: 'planets'
 }]
 
 
-export { mockPeopleValues, mockPeopleFinal, mockPlanetValues, mockVehicleValues, mockVehicleFinal, mockFinalPlanets }
+export { mockPeopleValues, mockPeopleFinal, mockPlanetValues, mockVehicleValues, mockVehicleFinal, mockFinalPlanets, mockFavorites, mockFavoritesFinal }

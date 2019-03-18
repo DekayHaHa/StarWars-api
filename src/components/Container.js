@@ -13,13 +13,6 @@ export class Container extends Component {
 			error: ''
 		}
 	}
-	checkData = (cat) => {
-		if(this.state[cat].length) {
-			return this.sendDownCards(this.state[cat])
-		} else {
-			this.setData(cat)
-		}
-	}
 	filterFavorites = () => {
 		const { people, vehicles, planets } = this.state
 		const allValues = [...people, ...vehicles, ...planets];
