@@ -13,13 +13,13 @@ export class Container extends Component {
 			error: ''
 		}
 	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.category !== prevProps.category) {
-			this.setData(this.props.category)
+	checkData = (cat) => {
+		if(this.state[cat].length) {
+			return this.sendDownCards(this.state[cat])
+		} else {
+			this.setData(cat)
 		}
 	}
-
 	setData = (cat) => {
 		const actions = {
 			people: (param) => peoplePull(param),
@@ -31,14 +31,20 @@ export class Container extends Component {
 			.then(finalForm => this.setState({ [cat]: finalForm }))
 			.catch(error => this.setState({ error: error.message }))
 	}
-
+	sendDownCards = (values) => {
+		return values.map(val => {
+			return <Card key={val.name} {...val.favorite} card={val} />
+		})
+	}
 	render () {
 		const { movie, category } = this.props
-		
+		if (category) {``
+			this.setData(category)
+		}
+		const display = this.state[category] ? this.sendDownCards(this.state[category]): <MovieScroll {...movie} />
 		return (
 			<div>
-				{!category && <MovieScroll {...movie}/>}
-				{category && <Card toDisplay={this.state[category]}/>}
+				{display}
 			</div>
 		)
 	}

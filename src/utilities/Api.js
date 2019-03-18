@@ -7,17 +7,16 @@ const fetchByKey = (key) => {
 const peoplePull = (values) => {
 	const cleanedPeeps = values.map(elem => { 
 		const { name, homeworld, species } = elem
-		const peep = { name, favorite: false}
 		return fetch(homeworld)
 			.then(response => response.json())
-			.then(data => ({ ...peep, 
+			.then(data => ({ name, 
 											 homeworld: data.name,
 											 population: data.population}))
 			.then(dataTwo => {
 				return fetchValues(species)
 					.then(val => {
 					const species = val.join('')
-					return {...dataTwo, species}})
+						return { ...dataTwo, species, favorite: false}})
 			})
 
 	})
@@ -30,7 +29,7 @@ const planetsPull = (values) => {
 		return fetchValues(residents)
 			.then(data => {
 				let residents = data.join(', ')
-				return { name, terrain, population, climate, favorite: false, residents }})
+				return { name, terrain, population, climate, residents, favorite: false }})
 	})
 	return Promise.all(cleanedPlanets)
 }
